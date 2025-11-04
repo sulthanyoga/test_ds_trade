@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Classic UI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding: 2rem;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #page1 {
+            background: linear-gradient(135deg, #1e293b 0%, #7e22ce 50%, #1e293b 100%);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .welcome-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 3rem;
+            max-width: 28rem;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .welcome-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .welcome-title h1 {
+            font-size: 3rem;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-title p {
+            color: #e9d5ff;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #a855f7, #ec4899);
+            color: white;
+            box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px -5px rgba(168, 85, 247, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        #page2 {
+            background: linear-gradient(135deg, #312e81 0%, #7e22ce 50%, #be185d 100%);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 2rem;
+            padding: 2.5rem;
+            max-width: 32rem;
+            width: 100%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-title {
+            font-size: 2.5rem;
+            color: #1f2937;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #374151;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            border: 2px solid #d8b4fe;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #a855f7;
+        }
+
+        #page3 {
+            background: linear-gradient(135deg, #115e59 0%, #0e7490 50%, #1e3a8a 100%);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-container {
+            max-width: 64rem;
+            width: 100%;
+        }
+
+        .profile-title {
+            font-size: 3rem;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .profile-avatar {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+        }
+
+        .avatar-1 { 
+            background: linear-gradient(135deg, #a855f7, #ec4899); 
+        }
+        
+        .avatar-2 { 
+            background: linear-gradient(135deg, #3b82f6, #06b6d4); 
+        }
+        
+        .avatar-3 { 
+            background: linear-gradient(135deg, #10b981, #059669); 
+        }
+
+        .profile-card h3 {
+            font-size: 1.5rem;
+            color: white;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-card p {
+            color: #e9d5ff;
+            text-align: center;
+        }
+
+        #page4 {
+            background: linear-gradient(135deg, #881337 0%, #be185d 50%, #7e22ce 100%);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-container {
+            background: white;
+            border-radius: 2rem;
+            padding: 2.5rem;
+            max-width: 28rem;
+            width: 100%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-nama1 {
+            background: linear-gradient(to right, #a855f7, #ec4899);
+            color: white;
+            box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.3);
+        }
+
+        .btn-nama1:hover {
+            background: linear-gradient(to right, #9333ea, #db2777);
+            transform: scale(1.05);
+        }
+
+        .btn-nama2 {
+            background: linear-gradient(to right, #3b82f6, #06b6d4);
+            color: white;
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-nama2:hover {
+            background: linear-gradient(to right, #2563eb, #0891b2);
+            transform: scale(1.05);
+        }
+
+        #page5 {
+            background: linear-gradient(135deg, #78350f 0%, #ea580c 50%, #dc2626 100%);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .empty-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 4rem;
+            max-width: 42rem;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .empty-container h2 {
+            font-size: 3rem;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .empty-container p {
+            color: #fed7aa;
+            font-size: 1.25rem;
+        }
+
+        @media (max-width: 768px) {
+            .welcome-title h1, .profile-title, .empty-container h2 {
+                font-size: 2rem;
+            }
+            
+            .form-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="page1" class="page active">
+        <div class="welcome-container">
+            <div class="welcome-title">
+                <h1>Welcome</h1>
+                <p>Choose your journey</p>
+            </div>
+            <button class="btn btn-primary" onclick="showPage(2)">Start</button>
+            <button class="btn btn-secondary" onclick="showPage(3)">Already</button>
+        </div>
+    </div>
+
+    <div id="page2" class="page">
+        <div class="form-container">
+            <h2 class="form-title">Create Account</h2>
+            <div class="form-group">
+                <label>Nama</label>
+                <input type="text" id="nama" class="form-input" placeholder="Masukkan nama">
+            </div>
+            <div class="form-group">
+                <label>Nama 1</label>
+                <input type="text" id="nama1" class="form-input" placeholder="Masukkan nama 1">
+            </div>
+            <div class="form-group">
+                <label>Nama 2</label>
+                <input type="text" id="nama2" class="form-input" placeholder="Masukkan nama 2">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" class="form-input" placeholder="Masukkan password">
+            </div>
+            <button class="btn btn-primary" onclick="submitForm()">Oke</button>
+        </div>
+    </div>
+
+    <div id="page3" class="page">
+        <div class="profile-container">
+            <h2 class="profile-title">Select Profile</h2>
+            <div class="profile-grid">
+                <div class="profile-card" onclick="showPage(4)">
+                    <div class="profile-avatar avatar-1"></div>
+                    <h3>Nama 1</h3>
+                    <p id="display-nama1">User 1</p>
+                </div>
+                <div class="profile-card" onclick="showPage(4)">
+                    <div class="profile-avatar avatar-2"></div>
+                    <h3>Nama 2</h3>
+                    <p id="display-nama2">User 2</p>
+                </div>
+                <div class="profile-card" onclick="showPage(4)">
+                    <div class="profile-avatar avatar-3"></div>
+                    <h3>Nama 3</h3>
+                    <p id="display-nama3">User 3</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page4" class="page">
+        <div class="auth-container">
+            <h2 class="form-title">Authentication</h2>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-input" placeholder="Enter password">
+            </div>
+            <div style="margin-top: 1.5rem;">
+                <button class="btn btn-nama1" onclick="showPage(5)" id="btn-nama1">Nama 1</button>
+                <button class="btn btn-nama2" onclick="showPage(5)" id="btn-nama2">Nama 2</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="page5" class="page">
+        <div class="empty-container">
+            <h2>Page 5</h2>
+            <p>This page is ready for your content</p>
+        </div>
+    </div>
+
+    <script>
+        var savedData = {
+            nama: '',
+            nama1: '',
+            nama2: ''
+        };
+
+        function showPage(pageNumber) {
+            var pages = document.querySelectorAll('.page');
+            pages.forEach(function(page) {
+                page.classList.remove('active');
+            });
+            document.getElementById('page' + pageNumber).classList.add('active');
+        }
+
+        function submitForm() {
+            savedData.nama = document.getElementById('nama').value;
+            savedData.nama1 = document.getElementById('nama1').value;
+            savedData.nama2 = document.getElementById('nama2').value;
+
+            if (savedData.nama1) {
+                document.getElementById('display-nama1').textContent = savedData.nama1;
+            }
+            if (savedData.nama2) {
+                document.getElementById('display-nama2').textContent = savedData.nama2;
+            }
+            if (savedData.nama) {
+                document.getElementById('display-nama3').textContent = savedData.nama;
+            }
+
+            if (savedData.nama1) {
+                document.getElementById('btn-nama1').textContent = savedData.nama1;
+            }
+            if (savedData.nama2) {
+                document.getElementById('btn-nama2').textContent = savedData.nama2;
+            }
+
+            showPage(4);
+        }
+    </script>
+</body>
+</html>
